@@ -1,0 +1,10 @@
+.dashboardContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.dashboardContentContainer {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 50%;
+}
