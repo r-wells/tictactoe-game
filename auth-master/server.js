@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
+const axios = require('axios');
 
 const app = express();
 
@@ -19,43 +20,40 @@ app.use(function (req, res, next) {
 });
 
 app.post('/login', async (req, res) => {
-    const user = users.find(u => {
-        return u.username === req.body.username || u.email === req.body.username;
+    const user = await axios.post('http://localhost:8081/get-user', {
+        username: req.body.username
     });
-    if (!user) {
-        res.send({
-            success: false, message: 'User not found. Please try again'
-        });
-        return;
-    }
-    console.log('user', user);
-    const match = await bcrypt.compare(req.body.password, user.password);
-    console.log('match', match);
-    if (match) {
-        res.send({
-            success: true,
-            token: '123'
-        });
+    if (!user.data.success) {
+        res.send(user.data);
     } else {
-        res.send({
-            success: false, message: 'wrong password'
-        });
+        const match = await bcrypt.compare(req.body.password, user.data.user.hashed_password);
+        if (match) {
+            res.send({
+                success: true,
+                token: '123'
+            });
+        } else {
+            res.send({
+                success: false, message: 'wrong password'
+            });
+        }
     }
 });
 
 app.post('/register', async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        console.log('hashedPassword', hashedPassword);
         const newUser = {
-            id: Date.now().toString(),
-            username: req.body.name,
+            username: req.body.username,
             email: req.body.email,
-            password: hashedPassword
+            hashed_password: hashedPassword
         };
-        users.push(newUser);
-        console.log('users', users);
+        console.log('newUser', newUser);
+        const createdUser = await axios.post('http://localhost:8081/create-user', newUser);
+        // console.log('createdUser');
         res.send({
-            message: "Successfully registered user"
+            message: "Successfully registered user", createdUser
         });
     } catch (e) {
         res.send({ message: `Failed to register user ${e.message}` });
