@@ -14,3 +14,20 @@
   color: crimson;
   cursor: pointer;
 }
+
+.smallButton {
+  background-color: ghostwhite;
+  border: 2px solid #000000;
+  border-radius: 6px;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
+  height: 42px;
+  width: 150px;
+}
+
+.smallButton:hover {
+  border: 2px solid crimson;
+  color: crimson;
+  cursor: pointer;
+}

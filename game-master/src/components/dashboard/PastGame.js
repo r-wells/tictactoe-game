@@ -1,11 +1,11 @@
 import React from 'react';
 
 const PastGame = ({ opponent, date, result, userName }) => {
-    return <div className="winnerContainer">
-        <span>Opponent: {opponent}</span>
-        <span>Date: {date}</span>
-        <span>Winner: {result === 'lost' ? opponent : userName}</span>
-    </div>;
+    return <tr>
+        <td>{opponent}</td>
+        <td>{date}</td>
+        <td>{result === 'lost' ? opponent : userName}</td>
+    </tr>;
 }
 
 export default PastGame;

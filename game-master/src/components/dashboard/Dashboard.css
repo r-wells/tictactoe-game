@@ -1,10 +1,32 @@
 .dashboardContainer {
   display: flex;
   justify-content: center;
+  flex-wrap: nowrap;
 }
 
 .dashboardContentContainer {
   padding-left: 20px;
   padding-right: 20px;
   width: 50%;
+}
+
+.dashboardHeader {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .dashboardContainer {
+    flex-wrap: wrap;
+  }
+
+  .dashboardContentContainer {
+    width: 100%;
+  }
 }

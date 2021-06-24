@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Winner from './Winner';
-import PastGame from './PastGame';
+import PastGames from './PastGames';
+import LeaderBoard from './LeaderBoard';
+import Button from '../generic/Button';
 
 import "./Dashboard.css";
 
@@ -77,22 +77,22 @@ class Dashboard extends Component {
         }],
         user: 'r-wells'
     };
+
+    _playClickHandler = () => {
+        window.location.href = '/play';
+    }
+
     render() {
         return <div>
-            <h2>Dashboard</h2>
-            <Link to="/play">Play</Link>
+            <div className="dashboardHeader">
+                <h2>Ready to play?</h2><Button text="Play" clickHandler={this._playClickHandler} />
+            </div>
             <div className="dashboardContainer">
                 <div className="dashboardContentContainer">
-                    <h3>Leaderboard</h3>
-                    {this.state.winners.map((winner, index) => {
-                        return <Winner key={index} position={index} name={winner.username} gamesWon={winner.gamesWon} />
-                    })}
+                    <LeaderBoard winners={this.state.winners} />
                 </div>
                 <div className="dashboardContentContainer">
-                    <h3>Past Games</h3>
-                    {this.state.pastGames.map((game, index) => {
-                        return <PastGame key={index} date={game.date} opponent={game.opponent} result={game.result} userName={this.state.user} />
-                    })}
+                    <PastGames games={this.state.pastGames} user={this.state.user} />
                 </div>
             </div>
         </div>;

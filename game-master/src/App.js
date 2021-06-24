@@ -17,6 +17,7 @@ function App() {
       <div className="innerWrapper">
         <BrowserRouter>
           <Switch>
+            <Redirect exact from="/" to="/home" />
             <Route path="/home">
               <Home isLoggedIn={token ? true : false} />
             </Route>
@@ -27,7 +28,6 @@ function App() {
               <Register />
             </Route>
             {token && <Authenticated />}
-            <Redirect from="/" to="/home" />
           </Switch>
         </BrowserRouter>
       </div>

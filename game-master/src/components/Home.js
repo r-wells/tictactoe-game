@@ -11,8 +11,8 @@ const Home = ({ isLoggedIn }) => {
             <h3 className="header">{isLoggedIn ? "Ready to Play?" : "Login to Play!"}</h3>
             <div className="buttonContainer">
                 {isLoggedIn
-                    ? <Button text="Play A Game" clickHandler={() => window.location.href = "/play"} />
-                    : <Button text="Login" clickHandler={() => window.location.href = "/login"} />
+                    ? <Button text="Play A Game" clickHandler={() => window.location.href = "/play"} size="large" />
+                    : <Button text="Login" clickHandler={() => window.location.href = "/login"} size="large" />
                 }
             </div>
         </div>

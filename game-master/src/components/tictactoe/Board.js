@@ -14,7 +14,6 @@ export default class Board extends React.Component {
         }
     }
 
-
     _handleCellClick = (i) => {
         const cells = this.state.cells;
         if (findWinner(cells) || cells[i]) {
@@ -47,21 +46,24 @@ export default class Board extends React.Component {
         }
         return (
             <div>
+                <h1>{this.props.gameType}</h1>
                 <div className="status">{status}</div>
-                <div className="board-row">
-                    {this._renderCell(0)}
-                    {this._renderCell(1)}
-                    {this._renderCell(2)}
-                </div>
-                <div className="board-row">
-                    {this._renderCell(3)}
-                    {this._renderCell(4)}
-                    {this._renderCell(5)}
-                </div>
-                <div className="board-row">
-                    {this._renderCell(6)}
-                    {this._renderCell(7)}
-                    {this._renderCell(8)}
+                <div className="boardContainer">
+                    <div className="board-row">
+                        {this._renderCell(0)}
+                        {this._renderCell(1)}
+                        {this._renderCell(2)}
+                    </div>
+                    <div className="board-row">
+                        {this._renderCell(3)}
+                        {this._renderCell(4)}
+                        {this._renderCell(5)}
+                    </div>
+                    <div className="board-row">
+                        {this._renderCell(6)}
+                        {this._renderCell(7)}
+                        {this._renderCell(8)}
+                    </div>
                 </div>
                 {this.state.gameOver && <button>Play Again?</button>}
             </div>

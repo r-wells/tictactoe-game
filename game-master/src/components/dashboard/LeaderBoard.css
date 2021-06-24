@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+}
+
+th,
+td {
+  color: ghostwhite;
+  font-weight: 600;
+  text-align: left;
+  width: 33%;
+}
+
+th {
+  color: crimson;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+caption {
+  color: ghostwhite;
+  font-size: 26px;
+  font-weight: 600;
+}

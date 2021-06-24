@@ -41,10 +41,26 @@ ul {
 }
 
 .game {
+  align-items: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: calc(100vh - 100px);
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 }
 
 .game-info {
   margin-left: 20px;
+}
+
+.gameBoard {
+  width: 100%;
+}
+
+.gameButtonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
 }
