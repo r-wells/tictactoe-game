@@ -3,14 +3,17 @@ import Button from './generic/Button';
 
 import "./Home.css";
 
-const Home = () => {
+const Home = ({ isLoggedIn }) => {
     return <div className="homeContainer">
-        <h1>Welcome!</h1>
         <div className="homeInnerContainer">
-            <h3>What do you want to do?</h3>
+            <h1 className="header">Tic. Tac. Toe.</h1>
+            <h2>Possibly the best game ever made</h2>
+            <h3 className="header">{isLoggedIn ? "Ready to Play?" : "Login to Play!"}</h3>
             <div className="buttonContainer">
-                <Button text="Play A Game" />
-                <Button text="Register" />
+                {isLoggedIn
+                    ? <Button text="Play A Game" clickHandler={() => window.location.href = "/play"} />
+                    : <Button text="Login" clickHandler={() => window.location.href = "/login"} />
+                }
             </div>
         </div>
     </div>;

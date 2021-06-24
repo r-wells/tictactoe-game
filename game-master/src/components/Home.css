@@ -1,6 +1,9 @@
 .homeContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   text-align: center;
-  height: 100%;
 }
 
 .homeInnerContainer {
@@ -9,12 +12,14 @@
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  height: 100%;
+  height: calc(100vh - 100px);
   width: 100%;
 }
 
 .buttonContainer {
-  display: flex;
-  justify-content: space-evenly;
   width: 100%;
+}
+
+.header {
+  color: crimson;
 }

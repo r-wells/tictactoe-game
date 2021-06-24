@@ -18,7 +18,7 @@ function App() {
         <BrowserRouter>
           <Switch>
             <Route path="/home">
-              <Home />
+              <Home isLoggedIn={token ? true : false} />
             </Route>
             <Route path="/login">
               <Login setToken={setToken} />
