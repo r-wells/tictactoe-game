@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import Logo from '../images/ttt-logo.png';
 
 import './NavBar.css'
@@ -6,6 +7,7 @@ import './NavBar.css'
 const NavBar = ({ loggedIn }) => {
     return <ul className="navbar">
         <li className="navItem">Home</li>
+        <li className="navItem">Dashboard</li>
         <li className="navItem">Play</li>
         <li className="navItem">{loggedIn ? "Logout" : "Login"}</li>
     </ul>;

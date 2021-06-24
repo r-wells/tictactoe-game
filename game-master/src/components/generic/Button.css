@@ -1,0 +1,16 @@
+.defaultButton {
+  background-color: ghostwhite;
+  border: 2px solid #000000;
+  border-radius: 6px;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
+  height: 50px;
+  width: 300px;
+}
+
+.defaultButton:hover {
+  border: 2px solid crimson;
+  color: crimson;
+  cursor: pointer;
+}
