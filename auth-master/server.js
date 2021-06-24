@@ -7,8 +7,6 @@ const axios = require('axios');
 
 const app = express();
 
-const users = [];
-
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -43,15 +41,12 @@ app.post('/login', async (req, res) => {
 app.post('/register', async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        console.log('hashedPassword', hashedPassword);
         const newUser = {
             username: req.body.username,
             email: req.body.email,
             hashed_password: hashedPassword
         };
-        console.log('newUser', newUser);
         const createdUser = await axios.post('http://localhost:8081/create-user', newUser);
-        // console.log('createdUser');
         res.send({
             message: "Successfully registered user", createdUser
         });

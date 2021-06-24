@@ -3,13 +3,16 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const { MongoClient } = require('mongodb');
 const { findUserByNameOrEmail, createUser } = require('./connect');
+const dotenv = require("dotenv")
+
+dotenv.config()
 
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
 
-const mongoClientURI = "mongodb+srv://caesar:EtTuBrute@cluster0.5nrmy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const mongoClientURI = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.5nrmy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -39,7 +42,6 @@ app.post('/get-user', async (req, res) => {
 app.post('/create-user', async (req, res) => {
     const client = new MongoClient(mongoClientURI, { useNewUrlParser: true, useUnifiedTopology: true });
     try {
-        // console.log('req', req);
         await client.connect();
         const data = { username: req.body.username, email: req.body.email, hashed_password: req.body.hashed_password };
         const userRes = await createUser(client, data);

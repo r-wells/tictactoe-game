@@ -1,48 +1,3 @@
-// async function init() {
-
-//     const uri = "mongodb+srv://caesar:EtTuBrute@cluster0.5nrmy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-
-//     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-//     try {
-//         await client.connect();
-
-//         // await createListing(client, {
-//         //     name: "Lovely place",
-//         //     summary: "Best loft ever",
-//         //     bedrooms: 1,
-//         //     bathrooms: 1
-//         // });
-
-//         // await findListingByName(client, "John Cena");
-//         await upsertListingByName(client, "Lovely place", {
-//             bedrooms: 2, beds: 8
-//         });
-//         await upsertListingByName(client, "John Cena", {
-//             bedrooms: 2, beds: 8
-//         });
-//         await deleteListingByName(client, "John Cena");
-//     } catch (e) {
-//         console.error(e);
-//     } finally {
-//         await client.close();
-//     }
-// }
-
-async function listDB(client) {
-    const dbList = await client.db().admin().listDatabases();
-    console.log('DB:');
-    dbList.databases.forEach(db => {
-        console.log(db.name);
-    })
-}
-
-async function createListing(client, newListing) {
-    const res = await client.db("sample_airbnb").collection("listingsAndReviews").insertOne(newListing);
-
-    console.log(`New listing: ${res.insertedId}`);
-}
-
 async function findListingByName(client, name) {
     const res = await client.db("sample_airbnb").collection("listingsAndReviews").findOne({ name: name });
 
@@ -113,20 +68,3 @@ module.exports = {
     findUserByNameOrEmail,
     createUser
 }
-
-// async function run() {
-//     const mongoClientURI = "mongodb+srv://caesar:EtTuBrute@cluster0.5nrmy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-//     const client = new MongoClient(mongoClientURI, { useNewUrlParser: true, useUnifiedTopology: true });
-//     try {
-//         await client.connect();
-//         const user = await findUserByNameOrEmail(client, "r.l.wells@outlook.com", "r.l.wells@outlook.com", "$2b$10$Y1rDQPTewHSDnpjYq4xSPubOQ7Vk61uwDOfMn.Sq7EmTFEALipemC");
-//         console.log('user', user);
-//     } catch (e) {
-//         console.error(e);
-//     } finally {
-//         await client.close();
-//     }
-// }
-// run();
-
-// init().catch(console.error);

@@ -14,7 +14,6 @@ const Login = ({ setToken }) => {
             username,
             password
         });
-        console.log('token', token);
         if (!token.success) {
             setLoginMessage(token.message);
         } else {
