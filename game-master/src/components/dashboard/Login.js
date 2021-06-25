@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './Login.css';
 
-const Login = ({ setToken }) => {
+const Login = ({ setToken, setGlobalUserName }) => {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const [loginMessage, setLoginMessage] = useState();
@@ -17,7 +17,9 @@ const Login = ({ setToken }) => {
         if (!token.success) {
             setLoginMessage(token.message);
         } else {
+            alert(username);
             setToken(token);
+            setGlobalUserName(username);
             window.location.pathname = "/dashboard";
         }
     }

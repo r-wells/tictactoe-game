@@ -4,9 +4,8 @@ import Board from './Board';
 import Button from '../generic/Button';
 import "./Game.css";
 
-const Game = () => {
+const Game = ({ userName }) => {
     const [gameType, setGameType] = useState(null);
-    const [userChoice, setUserChoice] = useState(true);
 
     return (
         <div className="game">

@@ -2,10 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { MongoClient } = require('mongodb');
-const { findUserByNameOrEmail, createUser } = require('./connect');
-const dotenv = require("dotenv")
+const { findUserByNameOrEmail, createUser, getLeaderboardData, getPastGamesByUsername, saveUserGame } = require('./connect');
+const dotenv = require("dotenv");
 
-dotenv.config()
+dotenv.config();
 
 const app = express();
 
@@ -48,6 +48,68 @@ app.post('/create-user', async (req, res) => {
 
         if (userRes.success) {
             res.send(userRes);
+        } else {
+            res.send({ success: false, message: "Error creating the user" });
+        }
+    } catch (e) {
+        console.log(e);
+    } finally {
+        client.close();
+    }
+});
+
+app.get('/get-leaderboard', async (req, res) => {
+    const client = new MongoClient(mongoClientURI, { useNewUrlParser: true, useUnifiedTopology: true });
+    try {
+        await client.connect();
+
+        const leaderRes = await getLeaderboardData(client);
+
+        if (leaderRes.success) {
+            res.send(leaderRes);
+        } else {
+            res.send({ success: false, message: "Error creating the user" });
+        }
+    } catch (e) {
+        console.log(e);
+    } finally {
+        client.close();
+    }
+});
+
+app.post('/get-user-past-games', async (req, res) => {
+    const client = new MongoClient(mongoClientURI, { useNewUrlParser: true, useUnifiedTopology: true });
+    try {
+        await client.connect();
+
+        const pastGames = await getPastGamesByUsername(client, req.body.username);
+
+        if (pastGames.success) {
+            res.send({ past_games: pastGames.userPastGames.past_games });
+        } else {
+            res.send({ success: false, message: "Error creating the user" });
+        }
+    } catch (e) {
+        console.log(e);
+    } finally {
+        client.close();
+    }
+});
+
+app.post('/save-game', async (req, res) => {
+    const client = new MongoClient(mongoClientURI, { useNewUrlParser: true, useUnifiedTopology: true });
+    try {
+        await client.connect();
+        const now = new Date();
+        const gameData = {
+            opponent: req.body.opponent,
+            date: `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`,
+            result: req.body.result
+        };
+        const result = await saveUserGame(client, req.body.username, gameData);
+
+        if (result.success) {
+            res.send({ success: true });
         } else {
             res.send({ success: false, message: "Error creating the user" });
         }

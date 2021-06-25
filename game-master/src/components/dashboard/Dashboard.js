@@ -83,7 +83,9 @@ class Dashboard extends Component {
     }
 
     render() {
+        console.log('this.props.username', this.props.userName);
         return <div>
+            <h1>Welcome back {this.props.userName}!</h1>
             <div className="dashboardHeader">
                 <h2>Ready to play?</h2><Button text="Play" clickHandler={this._playClickHandler} />
             </div>
