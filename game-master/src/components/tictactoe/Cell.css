@@ -1,0 +1,19 @@
+.cell {
+  background: ghostwhite;
+  border: 1px solid crimson;
+  color: crimson;
+  font-size: 8rem;
+  font-weight: bold;
+  line-height: 34px;
+  height: 10rem;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 10rem;
+}
+
+.cell:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}

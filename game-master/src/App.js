@@ -4,15 +4,13 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Register from './components/dashboard/Register';
 import Login from './components/dashboard/Login';
 import useToken from './hooks/useToken';
-import SaveUserName from './hooks/SaveUserName';
 import NavBar from './components/generic/Navbar';
 import Home from './components/Home';
 import Authenticated from './components/Routes/Authenticated';
 
 function App() {
-  const { token, setToken } = useToken();
-  const { userName, saveUserName } = SaveUserName();
-  console.log('userName in App', userName);
+  const { token, setToken, userName } = useToken();
+
   return (
     <div className="wrapper">
       <NavBar loggedIn={token ? true : false} />
@@ -23,13 +21,13 @@ function App() {
               <Home isLoggedIn={token ? true : false} />
             </Route>
             <Route path="/login">
-              <Login setToken={setToken} setGlobalUserName={saveUserName} />
+              <Login setToken={setToken} />
             </Route>
             <Route path="/register">
               <Register />
             </Route>
             {token && <Authenticated username={userName} />}
-            <Redirect from="/" to="/home" />
+            <Redirect exact from="/" to="/home" />
           </Switch>
         </BrowserRouter>
       </div>

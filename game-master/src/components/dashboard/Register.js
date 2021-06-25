@@ -7,7 +7,7 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await registerUser({
+        await registerUser({
             username,
             email,
             password

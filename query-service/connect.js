@@ -1,5 +1,4 @@
 async function createUser(client, newListing) {
-    console.log('newListing', newListing);
     const res = await client.db("tic_tac_toe").collection("users").insertOne(newListing);
     if (res) {
         return { success: true, userId: res.insertedId };

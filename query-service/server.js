@@ -87,7 +87,7 @@ app.post('/get-user-past-games', async (req, res) => {
         if (pastGames.success) {
             res.send({ past_games: pastGames.userPastGames.past_games });
         } else {
-            res.send({ success: false, message: "Error creating the user" });
+            res.send({ success: false, message: "Error getting past games" });
         }
     } catch (e) {
         console.log(e);

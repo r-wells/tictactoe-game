@@ -14,7 +14,7 @@ const LeaderBoard = ({ winners }) => {
         </thead>
         <tbody>
             {winners.map((winner, index) => {
-                return <Winner key={index} position={index + 1} name={winner.username} gamesWon={winner.gamesWon} />
+                return <Winner key={index} position={index + 1} name={winner.username} gamesWon={winner.games_won} />
             })}
         </tbody>
     </table>;

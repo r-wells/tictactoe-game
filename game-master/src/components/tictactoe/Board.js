@@ -2,6 +2,7 @@ import React from 'react';
 import { findWinner, getComputerMove } from './helperFunctions';
 
 import Cell from './Cell';
+import './Board.css';
 
 export default class Board extends React.Component {
     constructor(props) {
@@ -11,6 +12,7 @@ export default class Board extends React.Component {
             nextPlayer: 'X',
             moves: 0,
             gameOver: false,
+            opponent: ''
         }
     }
 
@@ -45,21 +47,20 @@ export default class Board extends React.Component {
             status = `Winner: ${winner}`;
         }
         return (
-            <div>
-                <h1>{this.props.gameType}</h1>
-                <div className="status">{status}</div>
+            <div className="boardWrapper">
+                <h2 className="status">{status}</h2>
                 <div className="boardContainer">
-                    <div className="board-row">
+                    <div className="boardRow">
                         {this._renderCell(0)}
                         {this._renderCell(1)}
                         {this._renderCell(2)}
                     </div>
-                    <div className="board-row">
+                    <div className="boardRow">
                         {this._renderCell(3)}
                         {this._renderCell(4)}
                         {this._renderCell(5)}
                     </div>
-                    <div className="board-row">
+                    <div className="boardRow">
                         {this._renderCell(6)}
                         {this._renderCell(7)}
                         {this._renderCell(8)}
