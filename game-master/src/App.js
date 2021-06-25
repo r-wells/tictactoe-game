@@ -27,7 +27,7 @@ function App() {
               <Register />
             </Route>
             {token && <Authenticated username={userName} />}
-            <Redirect exact from="/" to="/home" />
+            <Redirect from="/" to="/home" />
           </Switch>
         </BrowserRouter>
       </div>

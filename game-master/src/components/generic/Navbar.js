@@ -7,6 +7,7 @@ const NavBar = ({ loggedIn }) => {
         <li className="navItem" onClick={() => _clickHandler('home')}>Home</li>
         <li className="navItem" onClick={() => _clickHandler('dashboard')}>Dashboard</li>
         <li className="navItem" onClick={() => _clickHandler('play')}>Play</li>
+        <li className="navItem" onClick={() => _clickHandler('register')}>Register</li>
         <li className="navItem" onClick={() => _clickHandler(loggedIn ? 'logout' : 'login')}>{loggedIn ? "Logout" : "Login"}</li>
     </ul>;
 }

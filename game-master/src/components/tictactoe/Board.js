@@ -11,25 +11,26 @@ export default class Board extends React.Component {
             cells: Array(9).fill(null),
             nextPlayer: 'X',
             moves: 0,
-            gameOver: false,
             opponent: ''
         }
     }
 
     _handleCellClick = (i) => {
         const cells = this.state.cells;
-        if (findWinner(cells) || cells[i]) {
-            this.setState({
-                gameOver: true
-            });
-            return;
-        }
         cells[i] = this.state.nextPlayer;
         this.setState({
             cells,
             nextPlayer: this.state.nextPlayer === 'X' ? 'O' : 'X',
             moves: this.state.moves + 1
         });
+    }
+
+    _resetBoard = () => {
+        this.setState({
+            cells: Array(9).fill(null),
+            moves: 0,
+            nextPlayer: 'X',
+        })
     }
 
     _renderCell = (i) => {
@@ -66,7 +67,7 @@ export default class Board extends React.Component {
                         {this._renderCell(8)}
                     </div>
                 </div>
-                {this.state.gameOver && <button>Play Again?</button>}
+                {this.state.moves === 9 || winner !== null && <button onClick={() => this._resetBoard()}>Play Again?</button>}
             </div>
         );
     }
