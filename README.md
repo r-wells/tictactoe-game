@@ -23,7 +23,7 @@ To start up the game, navigate to all the directories and run `npm start`;
 
 Head to [your localhost](http://localhost:3000) to begin.
 
-You can set up a new account on [the register page](http://localhost:3000) or you can use the below credentials to get the full experience (with leaderboards and past games shown on the dashboard):
+You can set up a new account on the register page (access through the nav bar) or you can use the below credentials to get the full experience (with leaderboards and past games shown on the dashboard):
 
 ```
 username: r-wells
